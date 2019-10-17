@@ -69,7 +69,7 @@ namespace SocketServer
             try
             {
                 //终结掉无用的线程
-                if(threadWatch!=null)
+                if (threadWatch != null)
                 {
                     threadWatch.Abort();
                 }
@@ -128,6 +128,7 @@ namespace SocketServer
                         ComboxIp(false, s.Key);
                         dicSocket.TryRemove(s.Key, out st);
                         log.Info("Remove:" + s.Key);
+                        ShowMessage(s.Key + "客户端失去连接!\r\n");
                     }
                 }
                 Thread.Sleep(10);
@@ -146,7 +147,7 @@ namespace SocketServer
                     if (messageQueue.TryDequeue(out img))
                     {
                         string msg = img.msg;
-                        log.Info("msg:" + msg);
+                        log.Info(img.ip + "msg:" + msg);
                         switch (msg)
                         {
                             //心跳消息
